@@ -4,6 +4,10 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
+
+group = "com.github.DHRUVILPATEL2303"
+version = "1.1.0"
+
 android {
     namespace = "com.example.composebottombar"
     compileSdk = 36

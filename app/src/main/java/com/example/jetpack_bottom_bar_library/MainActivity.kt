@@ -13,8 +13,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.composebottombar.AutoHideBottomNavigationBar
 import com.example.composebottombar.BottomBarItem
+import com.example.composebottombar.FarmerBottomBarItem
 import com.example.composebottombar.JetBottomBar
 import com.example.jetpack_bottom_bar_library.ui.theme.Jetpack_Bottom_Bar_LibraryTheme
 
@@ -25,10 +28,28 @@ class MainActivity : ComponentActivity() {
         setContent {
             Jetpack_Bottom_Bar_LibraryTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    JetBottomBar(
-                        items = items,
-                        selectedRoute = "home",
-                        onItemClick = { item -> println("Clicked ${item.label}") }
+                    AutoHideBottomNavigationBar(
+                        selectedItemIndex = 0,
+                        items = listOf(
+                            FarmerBottomBarItem(
+                                name = "Home",
+                                route = "home",
+                                selectedIcon = Icons.Filled.Home,
+                                unselectedIcon = Icons.Filled.Home,
+                                color = Color.Blue
+                            ),
+                            FarmerBottomBarItem(
+                                name = "Profile",
+                                route = "profile",
+                                selectedIcon = Icons.Filled.Person,
+                                unselectedIcon = Icons.Filled.Person,
+                                color = Color.Green
+                            )
+                        ),
+                        isDarkTheme = false,
+                        isExpanded = true,
+                        onItemSelected = { index -> println("Selected index $index") },
+                        onExpandRequested = { println("Expand requested") }
                     )
                 }
             }
